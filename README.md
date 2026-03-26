@@ -130,6 +130,45 @@ npm run dev
 
 La aplicación estará disponible en `http://localhost:3000`. La API key de OpenRouter es necesaria para las funcionalidades de IA (recomendación y generación), pero la navegación por los frameworks funciona sin ella.
 
+## Docker (desarrollo y estático)
+
+También puedes ejecutar el proyecto con Docker, sin instalar Node.js en tu máquina host.
+
+```bash
+# Desarrollo (hot-reload) en http://localhost:3000
+docker compose up --build app-dev
+```
+
+```bash
+# Sitio estático exportado (compatible con GitHub Pages) en http://localhost:8080
+docker compose up --build app-static
+```
+
+### Export estático para GitHub Pages
+
+El proyecto ahora soporta export estático cuando se define `NEXT_OUTPUT_EXPORT=true` (o `GITHUB_PAGES=true`).
+
+Flujo recomendado:
+
+```bash
+# Genera /out en local (sin Docker)
+NEXT_OUTPUT_EXPORT=true npm run build
+```
+
+En PowerShell:
+
+```powershell
+$env:NEXT_OUTPUT_EXPORT="true"
+npm run build
+```
+
+En GitHub Actions para Pages, define:
+
+- `GITHUB_PAGES=true`
+- `GITHUB_REPOSITORY=<owner>/<repo>`
+
+Con eso Next.js ajusta automáticamente `basePath` y `assetPrefix` al nombre del repositorio.
+
 ## Estructura del Proyecto
 
 ```

@@ -9,6 +9,10 @@
 
 import type { NextConfig } from "next";
 
+const isGithubPages = process.env.GITHUB_PAGES === "true";
+const isStaticExport = process.env.NEXT_OUTPUT_EXPORT === "true" || isGithubPages;
+const repositoryName = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "";
+
 const securityHeaders = [
   {
     key: 'X-DNS-Prefetch-Control',
@@ -50,10 +54,18 @@ const nextConfig: NextConfig = {
   // Configuración de imágenes remotas (si se necesitan)
   images: {
     remotePatterns: [],
+    // Required when exporting static files (e.g. GitHub Pages)
+    unoptimized: isStaticExport,
   },
 
   // Deshabilitar X-Powered-By para no exponer Next.js
   poweredByHeader: false,
+
+  // Static export mode for Docker static serving / GitHub Pages
+  ...(isStaticExport ? { output: "export" } : {}),
+  ...(isGithubPages ? { trailingSlash: true } : {}),
+  ...(isGithubPages && repositoryName ? { basePath: `/${repositoryName}` } : {}),
+  ...(isGithubPages && repositoryName ? { assetPrefix: `/${repositoryName}/` } : {}),
 };
 
 export default nextConfig;
