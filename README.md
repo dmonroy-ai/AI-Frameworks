@@ -5,7 +5,7 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-Una colección curada de **100 frameworks de prompt engineering** con un sistema inteligente de recomendación y generación de prompts efectivos. Esta herramienta ayuda a desarrolladores, creadores de contenido y profesionales a estructurar mejor sus interacciones con modelos de lenguaje como ChatGPT, Claude, Gemini y otros.
+Una colección curada de **100 frameworks de prompt engineering** con un sistema inteligente de recomendación y generación de prompts efectivos. Esta herramienta ayuda a desarrolladores, creadores de contenido y profesionales a estructurar mejor sus interacciones con modelos de lenguaje como ChatGPT, Claude, Claude Code, Gemini y otros.
 
 
 
