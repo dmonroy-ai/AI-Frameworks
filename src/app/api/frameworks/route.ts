@@ -23,10 +23,6 @@ export const dynamic = 'force-static'
 export const revalidate = false
 const isStaticExport = process.env.NEXT_OUTPUT_EXPORT === 'true' || process.env.GITHUB_PAGES === 'true'
 
-// #region agent log
-fetch('http://127.0.0.1:7562/ingest/dafaa378-5d26-41b4-83f2-cae13f10a708',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'15c1f8'},body:JSON.stringify({sessionId:'15c1f8',runId:'pre-fix',hypothesisId:'H3',location:'src/app/api/frameworks/route.ts:23',message:'frameworks route module evaluated',data:{nextOutputExport:process.env.NEXT_OUTPUT_EXPORT ?? null,githubPages:process.env.GITHUB_PAGES ?? null},timestamp:Date.now()})}).catch(()=>{});
-// #endregion
-
 // Schema de validación para parámetros de consulta
 const querySchema = z.object({
   search: z.string().max(100).optional(),
@@ -41,9 +37,6 @@ const querySchema = z.object({
 })
 
 export async function GET(request: Request) {
-  // #region agent log
-  fetch('http://127.0.0.1:7562/ingest/dafaa378-5d26-41b4-83f2-cae13f10a708',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'15c1f8'},body:JSON.stringify({sessionId:'15c1f8',runId:'pre-fix',hypothesisId:'H4',location:'src/app/api/frameworks/route.ts:39',message:'frameworks GET invoked',data:{staticExport:isStaticExport},timestamp:Date.now()})}).catch(()=>{});
-  // #endregion
   if (isStaticExport) {
     const allFrameworks = sortFrameworks(getAllFrameworks(), 'popularity', 'desc').map(toSummary)
     return NextResponse.json({
